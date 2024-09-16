@@ -1,0 +1,50 @@
+
+
+
+<div class="row">
+
+  <div class="col-xl-12">
+
+    <div class="w-75 mx-auto position-relative">
+
+      <div class="">
+        <ngb-carousel [showNavigationArrows]="true" [showNavigationIndicators] ="false" *ngIf="images" class="text-center">
+          <ng-template ngbSlide>
+            <div class="">
+              <img src="./assets/img/media/1.jpg" alt="Random first slide">
+            </div>
+          </ng-template>
+          <ng-template ngbSlide>
+            <img src="./assets/img/media/bg-img1.jpg" alt="Random second slide">
+          </ng-template>
+          <ng-template ngbSlide>
+            <div class="">
+              <img src="./assets/img/media/3.jpg" alt="Random third slide">
+            </div>
+          </ng-template>
+        </ngb-carousel>
+
+      </div>
+
+
+      <div class="pos-absolute first-category-position">
+        <app-home-category-list></app-home-category-list>
+
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+  <div>
+
+
+
+  </div>
+
+
+
+</div>
