@@ -14,6 +14,7 @@ import {AngularFireAuthModule} from '@angular/fire/compat/auth';
 import {ToastrModule} from 'ngx-toastr';
 import {ColorPickerService} from 'ngx-color-picker';
 import {HomeModule} from "./modules/home/home.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import {HomeModule} from "./modules/home/home.module";
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     NgbModule,
     FormsModule, ReactiveFormsModule,
