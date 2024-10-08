@@ -22,6 +22,7 @@ import { ToggleThemeDirective } from './directives/toggle-theme.directive';
 import { SwitcherLayoutComponent } from './layout-components/layout/switcher-layout/switcher-layout.component';
 import { SwitcherHeaderComponent } from './layout-components/switcher-header/switcherheader.component';
 import { NgScrollbarModule } from 'ngx-scrollbar';
+import {HomeModule} from "../modules/home/home.module";
 
 @NgModule({
   declarations: [
@@ -50,6 +51,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     NgScrollbarModule,
     ColorPickerModule,
     FormsModule,
+    HomeModule,
   ],
   exports : [
     PageHeaderComponent, TabToTopComponent, FullLayoutComponent, ContentLayoutComponent, ErrorLayoutComponent, SwitcherComponent, LoaderComponent, SwitcherLayoutComponent

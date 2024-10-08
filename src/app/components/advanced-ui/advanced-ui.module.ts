@@ -101,15 +101,15 @@ const customNotifierOptions: NotifierOptions = {
     CommonModule,
     AdvancedUiRoutingModule,
     SharedModule,
-    FormsModule,ReactiveFormsModule,
-    NgbModule, 
+    FormsModule, ReactiveFormsModule,
+    NgbModule,
     NgScrollbarModule,
     DragulaModule.forRoot(),
     NgxNotifierModule,
-    MatFormFieldModule, MatInputModule, MatSelectModule,MatSnackBarModule,
+    MatFormFieldModule, MatInputModule, MatSelectModule, MatSnackBarModule,
     MatTreeModule, MatIconModule, MatProgressBarModule,
-    SweetAlert2Module,NgxStarsModule,
-     BarRatingModule,
+    SweetAlert2Module, NgxStarsModule,
+    BarRatingModule,
     CalendarModule.forRoot({
       provide: DateAdapter,
       useFactory: adapterFactory
@@ -118,7 +118,9 @@ const customNotifierOptions: NotifierOptions = {
     NotifierModule.withConfig(customNotifierOptions),
     NgSelectModule
   ],
-  providers: [
-  ]
+  exports: [
+    SearchComponent
+  ],
+  providers: []
 })
 export class AdvancedUiModule { }
