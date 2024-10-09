@@ -14,33 +14,33 @@
 <div class="input-group">
   <!-- <input type="search" class="form-control rounded-0" placeholder="Search for anything..."> -->
   <input type="search" class="form-control rounded-0" placeholder="Search product, category, brand, etc..."
-         aria-label="Search" tabindex="1" [(ngModel)]="text" [ngModelOptions]="{standalone: true}"
-         (keyup)="Search(text)" autocomplete="off">
+         aria-label="Search" tabindex="1" [(ngModel)]="filter.Query" [ngModelOptions]="{standalone: true}"
+         (keyup)="onKeyUp()" autocomplete="off">
   <button class="btn search-btn"><i class="fe fe-search"></i></button>
 </div>
 
 
 <div class="search-result desktop-search p-absolute card border mt-1 input-group"
-     *ngIf="menuItems?.length; else elseBlock">
+     *ngIf="items?.length; else elseBlock">
   <div class="card-header">
-    <h4 class="card-title me-2">Search result of "{{ text }}" </h4> <small> limit dropdown 5 only</small>
+    <h4 class="card-title me-2">Search result of "{{ filter.Query }}" </h4> <small> limit dropdown 5 only</small>
   </div>
   <ul class="list-group text-break">
-    <li *ngFor="let menuItem of menuItems | slice:0:5" [routerLink]="menuItem?.path"
-        class="list-group-item header-list-group border-start-end-top-0 br-0" (click)="clearSearch()">
-      <i class="fa fa-angle-double-right me-2" aria-hidden="true"></i>{{ menuItem?.title }}
+    <li *ngFor="let item of items | slice:0:5"
+        class="list-group-item header-list-group border-start-end-top-0 br-0" (click)="selectItem(item)">
+      <i class="fa fa-angle-double-right me-2" aria-hidden="true"></i>{{ item?.name }}
     </li>
   </ul>
 </div>
 <ng-template #elseBlock>
-  <ng-template *ngIf="text?.length === 0; else else1Block">
+  <ng-template *ngIf="filter.Query?.length === 0; else else1Block">
 
   </ng-template>
 </ng-template>
 <ng-template #else1Block>
   <ul class="list-group p-absolute w-100 mt-1 serach-result-empty text-break input-group">
     <li class="list-group-item no-result" [ngClass]="{'show':SearchResultEmpty}"><i
-      class="fa fa-frown-o text-primary me-2" aria-hidden="true"></i>No Search Result Found with "{{ text }}"
+      class="fa fa-frown-o text-primary me-2" aria-hidden="true"></i>No Search Result Found with "{{ filter.Query }}"
     </li>
   </ul>
 </ng-template>

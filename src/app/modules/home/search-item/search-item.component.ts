@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Menu, NavService} from "../../../shared/services/nav.service";
-import {fromEvent} from "rxjs";
+import {fromEvent, Subject} from "rxjs";
+import {debounceTime} from "rxjs/operators";
+import {HomeService} from "../home.service";
+import {PaginationParams} from "../../../shared/models/filter-list";
 
 @Component({
   selector: 'app-search-item',
@@ -8,80 +11,71 @@ import {fromEvent} from "rxjs";
   styleUrls: ['./search-item.component.scss']
 })
 export class SearchItemComponent implements OnInit {
-  public menuItems!: Menu[];
-  public items!: Menu[];
-  public text!: string;
+  // public menuItems!: Menu[];
+  // public items!: Menu[];
+  items: any[] = [];
+  // public text!: string;
   public SearchResultEmpty: boolean = false;
+  public filter = new PaginationParams(6);
 
-  constructor(public navServices: NavService) {
+  private searchSubject = new Subject<string>();
+
+  constructor(public navServices: NavService,
+              private homeService: HomeService
+              ) {
+    this.searchSubject.pipe(
+      debounceTime(1000) // Waits for 2 seconds
+    ).subscribe(searchText => {
+      this.Search(searchText);
+    });
   }
 
   ngOnInit() {
 
-    this.navServices.items.subscribe((menuItems) => {
-      this.items = menuItems;
-    });
+    // this.navServices.items.subscribe((menuItems) => {
+    //   this.items = menuItems;
+    // });
     let maincontent: any = document.querySelectorAll(".main-content");
     fromEvent(maincontent, "click").subscribe(() => {
-      this.clearSearch();
+      this.selectItem('');
     });
-    this.text = '';
+    this.filter.Query = '';
   }
 
 
   Search(searchText: any) {
-    if (!searchText) return this.menuItems = [];
-    // items array which stores the elements
-    let items: any[] = [];
-    // Converting the text to lower case by using toLowerCase() and trim() used to remove the spaces from starting and ending
-    searchText = searchText.toLowerCase().trim();
-    this.items.filter((menuItems: any) => {
-      // checking whether menuItems having title property, if there was no title property it will return
-      if (!menuItems?.title) return false;
-      //  checking wheteher menuitems type is text or string and checking the titles of menuitems
-      if (menuItems.type === 'link' && menuItems.title.toLowerCase().includes(searchText)) {
-        // Converting the menuitems title to lowercase and checking whether title is starting with same text of searchText
-        if (menuItems.title.toLowerCase().startsWith(searchText)) {// If you want to get all the data with matching to letter entered remove this line(condition and leave items.push(menuItems))
-          // If both are matching then the code is pushed to items array
-          items.push(menuItems);
-        }
+    if(!searchText || searchText.length < 2)
+      return ;
+
+    // console.log(searchText);
+
+    this.homeService.searchItem(this.filter).subscribe({
+      next: (res: any) => {
+        // console.log(res);
+        this.items = res;
       }
-      //  checking whether the menuItems having children property or not if there was no children the return
-      if (!menuItems.children) return false;
-      menuItems.children.filter((subItems: any) => {
-        if (subItems.type === 'link' && subItems.title.toLowerCase().includes(searchText)) {
-          if (subItems.title.toLowerCase().startsWith(searchText)) {         // If you want to get all the data with matching to letter entered remove this line(condition and leave items.push(subItems))
-            items.push(subItems);
-          }
-
-        }
-        if (!subItems.children) return false;
-        subItems.children.filter((subSubItems: any) => {
-          if (subSubItems.title.toLowerCase().includes(searchText)) {
-            if (subSubItems.title.toLowerCase().startsWith(searchText)) {// If you want to get all the data with matching to letter entered remove this line(condition and leave items.push(subSubItems))
-              items.push(subSubItems);
-            }
-          }
-        })
-        return;
-      })
-      return this.menuItems = items;
     });
-    // Used to show the No search result found box if the length of the items is 0
-    if (!items.length) {
-      this.SearchResultEmpty = true;
-    } else {
-      this.SearchResultEmpty = false;
-    }
-    return;
+
   }
 
 
-  clearSearch() {
-    this.text = '';
-    this.menuItems = [];
+  selectItem(item: any) {
+
+    console.log(item);
+    return ;
+
+
+    this.filter.Query = '';
+    // this.menuItems = [];
+    this.items = [];
     this.SearchResultEmpty = false;
-    return this.text, this.menuItems
+    // return this.filter.Query, this.menuItems
+    return this.filter.Query, this.items
   }
 
+  protected readonly onkeyup = onkeyup;
+
+  onKeyUp() {
+    this.searchSubject.next(this.filter.Query);
+  }
 }
