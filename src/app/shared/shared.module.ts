@@ -54,7 +54,8 @@ import {HomeModule} from "../modules/home/home.module";
     HomeModule,
   ],
   exports : [
-    PageHeaderComponent, TabToTopComponent, FullLayoutComponent, ContentLayoutComponent, ErrorLayoutComponent, SwitcherComponent, LoaderComponent, SwitcherLayoutComponent
+    PageHeaderComponent, TabToTopComponent, FullLayoutComponent, ContentLayoutComponent, ErrorLayoutComponent, SwitcherComponent, LoaderComponent, SwitcherLayoutComponent,
+    RouterModule
   ],
   providers: [
   ]

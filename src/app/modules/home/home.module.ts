@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { HomeCategoryListComponent } from './home-category-list/home-category-list.component';
 import { SearchItemComponent } from './search-item/search-item.component';
 import {FormsModule} from "@angular/forms";
-import {RouterLink} from "@angular/router";
+import { RouterModule} from "@angular/router";
 
 
 
@@ -19,7 +19,7 @@ import {RouterLink} from "@angular/router";
   imports: [
     CommonModule,
     FormsModule,
-    RouterLink
+    RouterModule
   ]
 })
 export class HomeModule { }

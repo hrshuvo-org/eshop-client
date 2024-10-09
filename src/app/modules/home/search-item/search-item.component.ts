@@ -43,7 +43,7 @@ export class SearchItemComponent implements OnInit {
     // fromEvent(maincontent, "click").subscribe(() => {
     //   this.selectItem('');
     // });
-    this.filter.Query = '';
+    // this.filter.Query = '';
   }
 
 
@@ -51,6 +51,7 @@ export class SearchItemComponent implements OnInit {
     if (!searchText) {
       this.items = [];
       this.SearchResultEmpty = false;
+
       return;
       // this.clearSearch();
     }
@@ -60,7 +61,7 @@ export class SearchItemComponent implements OnInit {
     this.homeService.searchItem(this.filter).subscribe({
       next: (res: any) => {
         // console.log(res);
-        this.items = res;
+        this.items = res.data;
       }
     });
 
@@ -68,7 +69,7 @@ export class SearchItemComponent implements OnInit {
 
 
   selectItem(item: any) {
-    console.log(this.filter.Query);
+    // console.log(this.filter.Query);
     this.showNotFound = false;
     this.clearSearch();
 
@@ -86,4 +87,14 @@ export class SearchItemComponent implements OnInit {
     this.showNotFound = true;
     this.searchSubject.next(this.filter.Query);
   }
+
+  onSearch(Query: string) {
+    if (Query.length > 0) {
+      this.filter.Query = Query;
+      this.Search(Query);
+    } else
+      this.router.navigate(['/']).then(r => r);
+  }
+
+
 }
