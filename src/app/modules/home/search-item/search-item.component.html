@@ -33,7 +33,7 @@
   </ul>
 </div>
 <ng-template #elseBlock>
-  <ng-template *ngIf="filter.Query?.length === 0; else else1Block">
+  <ng-template *ngIf="filter.Query?.length === 0 || !showNotFound; else else1Block">
 
   </ng-template>
 </ng-template>

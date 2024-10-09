@@ -7,7 +7,7 @@ export const content: Routes = [
     loadChildren: () => import('../../components/dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
-    path:'catalog',
+    path:'',
     loadChildren: () => import('../../modules/catalog/catalog.module').then(m => m.CatalogModule)
   },
 

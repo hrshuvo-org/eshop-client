@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import {ProductsModule} from "./products/products.module";
+import {ProductModule} from "./product/product.module";
 import {CatalogRoutingModule} from "./catalog-routing.module";
 
 
@@ -10,10 +10,10 @@ import {CatalogRoutingModule} from "./catalog-routing.module";
   imports: [
     CommonModule,
     CatalogRoutingModule,
-    ProductsModule
+    ProductModule
   ],
   exports:[
-    ProductsModule
+    ProductModule
   ]
 })
 export class CatalogModule { }
