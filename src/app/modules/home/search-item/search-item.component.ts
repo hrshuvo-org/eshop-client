@@ -73,7 +73,9 @@ export class SearchItemComponent implements OnInit {
     this.showNotFound = false;
     this.clearSearch();
 
-    this.router.navigate(['/s'], {queryParams: {k: this.filter.Query}}).then(r => r);
+    this.router.navigate(['/s'], {queryParams: {k: this.filter.Query}}).then(() =>{
+      window.location.reload();
+    });
   }
 
   clearSearch() {

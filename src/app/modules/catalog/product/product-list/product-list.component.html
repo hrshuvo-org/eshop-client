@@ -167,7 +167,7 @@
                   <span class="product-discount-label bg-warning">-50%</span>
                 </ng-template>
                 <a routerLink="/eCommerce/product-details" class="image">
-                  <img class="pic-1" alt="product-image-1" src="./assets/img/pngs/02.png">
+                  <img class="pic-1" alt="product-image-1" [src]="item.photoUrl ?? './assets/img/pngs/02.png'">
                 </a>
                 <a routerLink="/eCommerce/wishlist" class="product-like-icon" href="javascript:;"><i class="far fa-heart"></i></a>
                 <div class="product-link">
