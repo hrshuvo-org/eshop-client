@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {PaginationParams} from "../../../../shared/models/filter-list";
 import {HomeService} from "../../../home/home.service";
+import {PaginatedResult} from "../../../../shared/models/pagination";
 
 @Component({
   selector: 'app-product-list',
@@ -10,8 +11,9 @@ import {HomeService} from "../../../home/home.service";
 })
 export class ProductListComponent implements OnInit {
   listFilter: PaginationParams = new PaginationParams();
+  result: PaginatedResult<any> = new PaginatedResult();
 
-  itemList: any[] = [];
+  // itemList: any[] = [];
 
   shopList!: ShopType[];
 
@@ -38,8 +40,8 @@ export class ProductListComponent implements OnInit {
   private loadItems() {
     this.itemService.searchItem(this.listFilter).subscribe({
       next: (response:any) => {
-        this.itemList = response.data;
-        console.log(this.itemList);
+        this.result = response.result;
+        // console.log(this.result);
         console.log(response);
       }
     });

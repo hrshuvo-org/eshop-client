@@ -16,7 +16,7 @@ export class HomeService {
 
   searchItem(filter: PaginationParams) {
     const params = this.helper.GetHttpParams(filter);
-    return this.http.get(this.baseUrl + 'home', {params});
+    return this.http.get(this.baseUrl + 'home/items', {params});
   }
 
 
