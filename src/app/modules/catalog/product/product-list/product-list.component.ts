@@ -12,6 +12,8 @@ import {PaginatedResult} from "../../../../shared/models/pagination";
 export class ProductListComponent implements OnInit {
   listFilter: PaginationParams = new PaginationParams();
   result: PaginatedResult<any> = new PaginatedResult();
+  categoryList: any[] = [];
+  variationList: any[] = [];
 
   // itemList: any[] = [];
 
@@ -38,9 +40,11 @@ export class ProductListComponent implements OnInit {
 
 
   private loadItems() {
-    this.itemService.searchItem(this.listFilter).subscribe({
+    this.itemService.searchProductItem(this.listFilter).subscribe({
       next: (response:any) => {
         this.result = response.result;
+        this.categoryList = response.categories;
+        this.variationList = response.variations;
         // console.log(this.result);
         console.log(response);
       }

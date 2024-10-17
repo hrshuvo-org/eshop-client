@@ -2,20 +2,35 @@
 <!-- Row -->
 <div class="row row-sm">
   <div class="col-md-12 col-lg-12 col-xl-3">
-    <div class="card custom-card">
+<!--    <div class="card custom-card">-->
+<!--      <div class="card-body">-->
+<!--        <div class="row row-sm">-->
+<!--          <div class="col-sm-12">-->
+<!--            <div class="input-group">-->
+<!--              <input type="text" class="form-control" placeholder="Search ...">-->
+<!--              <span class="input-group-btn">-->
+<!--                <button class="btn ripple btn-primary" type="button">Search</button>-->
+<!--              </span>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+
+    <div class="card custom-card" *ngFor="let variation of variationList">
+      <div class="card-header">
+        <h6 class="main-content-label text-capitalize">{{variation.name}}</h6>
+      </div>
       <div class="card-body">
-        <div class="row row-sm">
-          <div class="col-sm-12">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search ...">
-              <span class="input-group-btn">
-                <button class="btn ripple btn-primary" type="button">Search</button>
-              </span>
-            </div>
-          </div>
+        <div class="custom-controls-stacked">
+          <label class="custom-control custom-checkbox" *ngFor="let option of variation.variationOptions">
+            <input type="checkbox" class="custom-control-input" [value]="option.id" >
+            <span class="custom-control-label">{{option.value}}</span>
+          </label>
         </div>
       </div>
     </div>
+
     <div class="card custom-card">
       <div class="card-header">
         <h6 class="main-content-label">Categories & Filters</h6>
@@ -41,6 +56,9 @@
         </div>
       </div>
     </div>
+
+
+
     <div class="card custom-card">
       <div class="card-header">
         <h6 class="main-content-label">Category</h6>
@@ -199,6 +217,9 @@
         </div>
       </div>
 
+      <div>
+        <hr>
+      </div>
 
       <div class="col-md-6 col-lg-6 col-xl-3 col-sm-6" *ngFor="let shop of shopList">
         <div class="card custom-card">
