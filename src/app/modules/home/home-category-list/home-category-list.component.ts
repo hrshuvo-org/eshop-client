@@ -14,6 +14,7 @@ export class HomeCategoryListComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadCategoryList();
+    // this.loadCategoryTree();
   }
 
   private loadCategoryList() {
@@ -26,4 +27,10 @@ export class HomeCategoryListComponent implements OnInit {
     });
 
   }
+
+  // private loadCategoryTree() {
+  //   this.categoryService.loadCategoryTree().subscribe(res => {
+  //     console.log(res);
+  //   });
+  // }
 }

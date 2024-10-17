@@ -2,30 +2,30 @@
 <!-- Row -->
 <div class="row row-sm">
   <div class="col-md-12 col-lg-12 col-xl-3">
-<!--    <div class="card custom-card">-->
-<!--      <div class="card-body">-->
-<!--        <div class="row row-sm">-->
-<!--          <div class="col-sm-12">-->
-<!--            <div class="input-group">-->
-<!--              <input type="text" class="form-control" placeholder="Search ...">-->
-<!--              <span class="input-group-btn">-->
-<!--                <button class="btn ripple btn-primary" type="button">Search</button>-->
-<!--              </span>-->
-<!--            </div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
+    <!--    <div class="card custom-card">-->
+    <!--      <div class="card-body">-->
+    <!--        <div class="row row-sm">-->
+    <!--          <div class="col-sm-12">-->
+    <!--            <div class="input-group">-->
+    <!--              <input type="text" class="form-control" placeholder="Search ...">-->
+    <!--              <span class="input-group-btn">-->
+    <!--                <button class="btn ripple btn-primary" type="button">Search</button>-->
+    <!--              </span>-->
+    <!--            </div>-->
+    <!--          </div>-->
+    <!--        </div>-->
+    <!--      </div>-->
+    <!--    </div>-->
 
     <div class="card custom-card" *ngFor="let variation of variationList">
       <div class="card-header">
-        <h6 class="main-content-label text-capitalize">{{variation.name}}</h6>
+        <h6 class="main-content-label text-capitalize">{{ variation.name }}</h6>
       </div>
       <div class="card-body">
         <div class="custom-controls-stacked">
           <label class="custom-control custom-checkbox" *ngFor="let option of variation.variationOptions">
-            <input type="checkbox" class="custom-control-input" [value]="option.id" >
-            <span class="custom-control-label">{{option.value}}</span>
+            <input type="checkbox" class="custom-control-input" [value]="option.id">
+            <span class="custom-control-label">{{ option.value }}</span>
           </label>
         </div>
       </div>
@@ -56,7 +56,6 @@
         </div>
       </div>
     </div>
-
 
 
     <div class="card custom-card">
@@ -167,9 +166,6 @@
   </div>
 
 
-
-
-
   <div class="col-md-12 col-lg-12 col-xl-9">
     <div class="row row-sm">
 
@@ -187,7 +183,8 @@
                 <a routerLink="/eCommerce/product-details" class="image">
                   <img class="pic-1" alt="product-image-1" [src]="item.photoUrl ?? './assets/img/pngs/02.png'">
                 </a>
-                <a routerLink="/eCommerce/wishlist" class="product-like-icon" href="javascript:;"><i class="far fa-heart"></i></a>
+                <a routerLink="/eCommerce/wishlist" class="product-like-icon" href="javascript:;"><i
+                  class="far fa-heart"></i></a>
                 <div class="product-link">
                   <a routerLink="/eCommerce/cart">
                     <i class="fe fe-shopping-cart"></i>
@@ -198,15 +195,20 @@
               <div class="product-content">
                 <div class="d-flex">
                   <div>
-                    <h3 class="title"><a href="#">{{item.name}}</a></h3>
+                    <h3 class="title"><a href="#">{{ item.name }}</a></h3>
                   </div>
                   <div class="price text-end ms-auto">
-                    <span class="old-price ms-2">{{item.price}}</span>
-                    <span class="fs-18">{{item.price}}</span>
+                    <span class="old-price ms-2">{{ item.price }}</span>
+                    <span class="fs-18">{{ item.price }}</span>
                   </div>
                 </div>
 
-                <p class="fs-13 text-muted mb-1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor ipsum quia.</p>
+                <p class="fs-13 text-muted mb-1"
+                   *ngIf="item.description; else  ifNoDescription">{{ item.description }}</p>
+                <ng-template #ifNoDescription>
+                  <p class="fs-13 text-muted mb-1">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolor ipsum
+                    quia.</p>
+                </ng-template>
                 <div>
                   <ngb-rating class="text-warning" [(rate)]='item.rating' [readonly]="true" [max]="5"></ngb-rating>
                   <a href="javascript:void(0);" class="me-4 text-muted"> (2)</a>
@@ -227,15 +229,16 @@
             <div class="product-grid">
               <div class="product-image">
                 <div *ngIf="shop.badgeStatus;else else_content" class="products-badge">
-                  <span class="badge bg-{{shop.badge}} text-white">{{shop.badgeText}}</span>
+                  <span class="badge bg-{{shop.badge}} text-white">{{ shop.badgeText }}</span>
                 </div>
                 <ng-template #else_content>
-                  <span class="product-discount-label bg-{{shop.badge}}">{{shop.badgeText}}</span>
+                  <span class="product-discount-label bg-{{shop.badge}}">{{ shop.badgeText }}</span>
                 </ng-template>
                 <a routerLink="/eCommerce/product-details" class="image">
                   <img class="pic-1" alt="product-image-1" src={{shop.img}}>
                 </a>
-                <a routerLink="/eCommerce/wishlist" class="product-like-icon" href="javascript:;"><i class="far fa-heart"></i></a>
+                <a routerLink="/eCommerce/wishlist" class="product-like-icon" href="javascript:;"><i
+                  class="far fa-heart"></i></a>
                 <div class="product-link">
                   <a routerLink="/eCommerce/cart">
                     <i class="fe fe-shopping-cart"></i>
@@ -246,18 +249,18 @@
               <div class="product-content">
                 <div class="d-flex">
                   <div>
-                    <h3 class="title"><a href="javascript:;">{{shop.title}}</a></h3>
+                    <h3 class="title"><a href="javascript:;">{{ shop.title }}</a></h3>
                   </div>
                   <div class="price text-end ms-auto">
-                    <span class="old-price ms-2">{{shop.oldValue}}</span>
-                    <span class="fs-18">{{shop.newValue}}</span>
+                    <span class="old-price ms-2">{{ shop.oldValue }}</span>
+                    <span class="fs-18">{{ shop.newValue }}</span>
                   </div>
                 </div>
 
-                <p class="fs-13 text-muted mb-1">{{shop.description}}</p>
+                <p class="fs-13 text-muted mb-1">{{ shop.description }}</p>
                 <div>
                   <ngb-rating class="text-warning" [(rate)]='shop.rating' [readonly]="true" [max]="5"></ngb-rating>
-                  <a href="javascript:void(0);" class="me-4 text-muted"> ({{shop.ratingValue}})</a>
+                  <a href="javascript:void(0);" class="me-4 text-muted"> ({{ shop.ratingValue }})</a>
                 </div>
               </div>
             </div>
